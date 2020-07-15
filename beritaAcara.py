@@ -81,7 +81,7 @@ ind_to_val = {"A":4, "AB":3.5, "B":3, "BC":2.5, "C":2, "D":1, "E":0}
 val_to_ind = {4:"A", 3.5:"AB", 3:"B", 2.5:"BC", 2:"C", 1:"D", 0:"E"}
 
 def hitungPembimbing(DPb11,DPb12,DPb13,DPb21,DPb22,DPb23):
-    if(DPb11 != "" and DPb21 != ""):
+    if(DPb11 != "" and (DPb21 != "" or DPb22 != "" or DPb23 != "")):
         # CLO 1
         LPb1 = [ind_to_val[DPb11]]
         LPb1.append(ind_to_val[DPb21])
