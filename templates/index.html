@@ -262,7 +262,11 @@
                 <div class="col-5 align-self-center d-flex justify-content-center">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <button type="reset" class="btn btn-outline-primary btn-lg" id="hitung" name="hitung" value=0>Reset</button>
+                            {% if message!="success" : %}
+                                <button type="reset" class="btn btn-outline-primary btn-lg" id="hitung" name="hitung" value=0>Reset</button>
+                            {% else : %}
+                                <button type="submit" class="btn btn-outline-primary btn-lg" id="hitung" name="hitung" value=0>Reset</button>
+                            {% endif %}
                             <button type="submit" class="btn btn-outline-primary btn-lg" id="hitung" name="hitung" value=1>Hitung</button>
                         </div>
                         <div class="col-12 d-flex justify-content-center">
