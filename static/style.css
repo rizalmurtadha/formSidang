@@ -1,0 +1,32 @@
+table, tr, th, td {
+    text-align:center; 
+    vertical-align : middle;
+    /* border: 1px solid black; */
+    /* border-collapse: collapse; */
+}
+#separate{
+    text-align:left;
+}
+#table tr th{
+    vertical-align : middle;
+}
+#Index{
+    background-color: white;
+    border-style: none;
+    color: black;
+}
+#logo{
+    align-items: center;
+    text-align: center;
+}
+#fakultas {
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Berita Acara Sidang</title>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">   
+        <script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        
+        <div class="container-fluid shadow-sm">
+            <br>
+            <div class="row">
+                <div id="logo" class="col-6 align-middle">
+                    <img  src="{{ url_for('static', filename='logo3.png')}}" height="70" alt="Card image cap">
+                </div>
+                <div id="fakultas" class="col-6 align-middle">
+                  <h3>Fakultas Informatika</h3>
+                  <h3>Universitas Telkom</h3>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="container shadow-sm">
+            <h2 style="text-align: center;">Berita Acara Sidang</h2>
+            <form action="{{ url_for('index') }}" method="POST" enctype=multipart/form-data name="myform" onclick="calculate()">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" >No.</th>
+                        <th rowspan="2">Posisi</th>
+                        <th colspan="3">Nilai</th>
+                    </tr>
+                    <tr>
+                        <th>CLO 1</th>
+                        <th>CLO 2</th>
+                        <th>CLO 3</th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    <tr>
+                        <th>1</th>
+                        <td>Pembimbing 1</td>
+                        <td>
+                            <select class="custom-select" name="P1n1"id="P1n1" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P1n2"id="P1n2" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P1n3"id="P1n3" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>Pembimbing 2</td>
+                        <td>
+                            <select class="custom-select" name="P2n1"id="P2n1" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P2n2"id="P2n2" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P2n3"id="P2n3" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="separate" colspan="2">Rata-rata pembimbing (Ra)</th>
+                        <td>
+                            <select class="custom-select" name="Ran1"id="Ran1" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Ran2"id="Ran2" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Ran3"id="Ran3" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Penguji 1</td>
+                        <td>
+                            <select class="custom-select" name="P3n1"id="P3n1" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P3n2"id="P3n2" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P3n3"id="P3n3" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>Penguji 2</td>
+                        <td>
+                            <select class="custom-select" name="P4n1"id="P4n1" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P4n2"id="P4n2" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="P4n3"id="P4n3" >
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="separate" colspan="2">Rata-rata penguji (Rb)</th>
+                        <td>
+                            <select class="custom-select" name="Rbn1"id="Rbn1" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Rbn2"id="Rbn2" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Rbn3"id="Rbn3" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="separate" colspan="2">Nilai hasil perhitungan (60%*Ra + 40%*Rb)</th>
+                        <td>
+                            <select class="custom-select" name="Rtn1"id="Rtn1" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Rtn2"id="Rtn2" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Rtn3"id="Rtn3" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th id="separate" colspan="2">Nilai akhir</th>
+                        <td>
+                            <select class="custom-select" name="Na1"id="Na1" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Na2"id="Na2" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select" name="Na3"id="Na3" disabled>
+                                <!-- <option disabled>-- select model number --</option> -->
+                                <option value=4 >A</option>
+                                <option value=3.5 >AB</option>
+                                <option value=3 >B</option>
+                                <option value=2.5 >BC</option>
+                                <option value=2 >C</option>
+                                <option value=1 >D</option>
+                                <option value=0 selected>E</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Indeks Tugas Akhir</h4>
+            <h4>(CLO1 x 35%) + (CLO2 x 30%) + (CLO3 x 35%) = <input id="Index" name="Index" disabled></h4>
+            <br><br>
+            </form>
+        </div>
+
+
+        <script>
+        var form = document.forms.myform,
+            P1n1 = form.P1n1,
+            P1n2 = form.P1n2,
+            P1n3 = form.P1n3,
+
+            P2n1 = form.P2n1,
+            P2n2 = form.P2n2,
+            P2n3 = form.P2n3,
+
+            P3n1 = form.P3n1,
+            P3n2 = form.P3n2,
+            P3n3 = form.P3n3,
+
+            P4n1 = form.P4n1,
+            P4n2 = form.P4n2,
+            P4n3 = form.P4n3,
+
+            Ran1 = form.Ran1,
+            Ran2 = form.Ran2,
+            Ran3 = form.Ran3,
+
+            Rbn1 = form.Rbn1,
+            Rbn2 = form.Rbn2,
+            Rbn3 = form.Rbn3,
+
+            Rtn1 = form.Rtn1,
+            Rtn2 = form.Rtn2,
+            Rtn3 = form.Rtn3,
+
+            Na1 = form.Na1,
+            Na2 = form.Na2,
+            Na3 = form.Na3,
+            Index = form.Index;
+        
+        window.calculate = function () {
+            var n1 = parseInt(P1n1.value) || 0,
+                n2 = parseInt(P1n2.value) || 0,
+                n3 = parseInt(P1n3.value) || 0,
+                n4 = parseInt(P2n1.value) || 0,
+                n5 = parseInt(P2n2.value) || 0,
+                n6 = parseInt(P2n3.value) || 0,
+                n7 = parseInt(P3n1.value) || 0,
+                n8 = parseInt(P3n2.value) || 0,
+                n9 = parseInt(P3n3.value) || 0,
+                n10 = parseInt(P4n1.value) || 0,
+                n11 = parseInt(P4n2.value) || 0,
+                n12 = parseInt(P4n3.value) || 0;
+            Ran1.value = ((n1 + n4)/2);
+            Ran2.value = ((n2 + n5)/2);
+            Ran3.value = ((n3 + n6)/2);
+
+            Rbn1.value = ((n7 + n10)/2);
+            Rbn2.value = ((n8 + n11)/2);
+            Rbn3.value = ((n9 + n12)/2);
+
+            Rtn1.value = (parseInt(60/100*Ran1.value) + parseInt(40/100*Rbn1.value));
+            Rtn2.value = (parseInt(60/100*Ran2.value) + parseInt(40/100*Rbn2.value));
+            Rtn3.value = (parseInt(60/100*Ran3.value) + parseInt(40/100*Rbn3.value));
+
+            Na1.value = Rtn1.value;
+            Na2.value = Rtn2.value;
+            Na3.value = Rtn3.value;
+
+            var idx = (35/100*Na1.value + 30/100*Na2.value + 35/100*Na3.value)
+            if(idx>3.5)
+                Index.value = "A" 
+            else if(idx>3.25)
+                Index.value = "AB"
+            else if(idx>2.75)
+                Index.value = "B"
+            else if(idx>2.25)
+                Index.value = "BC"
+            else if(idx>1.75)
+                Index.value = "C"
+            else if(idx>1)
+                Index.value = "D"
+            else if(idx<1)
+                Index.value = "E"
+             
+        };
+        </script>
+
+</body>
+</html>
