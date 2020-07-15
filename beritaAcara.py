@@ -40,10 +40,6 @@ def index():
                 LNP = hitungNilaiTotal(LPb,LPg)
                 LNA = hitungNilaiAkhir(LNP)
                 LIA = indexing(LNA)
-                LPb = val_idx_conv(LPb)
-                LPg = val_idx_conv(LPg)
-                LNP = val_idx_conv(LNP)
-                LNA = val_idx_conv(LNA)
                 return render_template("index.html",
                                     DPb11=DPb11, DPb12=DPb12, DPb13=DPb13,
                                     DPb21=DPb21, DPb22=DPb22, DPb23=DPb23,
@@ -135,7 +131,7 @@ def hitungNilaiTotal(LPb,LPg):
     LNP2 = (0.6*LPb[1]) + (0.4* LPg[1])
     # CLO3
     LNP3 = (0.6*LPb[2]) + (0.4* LPg[2])
-    LNP=[LNP1,LNP2,LNP3]
+    LNP=[round(LNP1,2),round(LNP2,2),round(LNP3,2)]
     return LNP
 
 def hitungNilaiAkhir(LNP):
@@ -160,17 +156,7 @@ def indexing(LNA):
     else: LIA = "E"
     return LIA
 
-def val_idx_conv(A):
-    for i in range(len(A)):
-        if A[i] > 3.5: LIA = "A"
-        elif A[i] > 3.25: LIA = "AB"
-        elif A[i] > 2.75: LIA = "B"
-        elif A[i] > 2.25: LIA = "BC"
-        elif A[i] > 1.75: LIA = "C"
-        elif A[i] > 1: LIA = "D"
-        else: LIA = "E"
-        A[i] = LIA
-    return A
+
 
 @app.after_request
 def add_header(r):
