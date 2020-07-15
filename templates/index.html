@@ -405,18 +405,18 @@
             Index = form.Index;
         
         window.calculate = function () {
-            var n1 = parseInt(P1n1.value) || 0,
-                n2 = parseInt(P1n2.value) || 0,
-                n3 = parseInt(P1n3.value) || 0,
-                n4 = parseInt(P2n1.value) || 0,
-                n5 = parseInt(P2n2.value) || 0,
-                n6 = parseInt(P2n3.value) || 0,
-                n7 = parseInt(P3n1.value) || 0,
-                n8 = parseInt(P3n2.value) || 0,
-                n9 = parseInt(P3n3.value) || 0,
-                n10 = parseInt(P4n1.value) || 0,
-                n11 = parseInt(P4n2.value) || 0,
-                n12 = parseInt(P4n3.value) || 0;
+            var n1 = parseFloat(P1n1.value) || 0,
+                n2 = parseFloat(P1n2.value) || 0,
+                n3 = parseFloat(P1n3.value) || 0,
+                n4 = parseFloat(P2n1.value) || 0,
+                n5 = parseFloat(P2n2.value) || 0,
+                n6 = parseFloat(P2n3.value) || 0,
+                n7 = parseFloat(P3n1.value) || 0,
+                n8 = parseFloat(P3n2.value) || 0,
+                n9 = parseFloat(P3n3.value) || 0,
+                n10 = parseFloat(P4n1.value) || 0,
+                n11 = parseFloat(P4n2.value) || 0,
+                n12 = parseFloat(P4n3.value) || 0;
             Ran1.value = ((n1 + n4)/2);
             Ran2.value = ((n2 + n5)/2);
             Ran3.value = ((n3 + n6)/2);
@@ -425,9 +425,9 @@
             Rbn2.value = ((n8 + n11)/2);
             Rbn3.value = ((n9 + n12)/2);
 
-            Rtn1.value = (parseInt(60/100*Ran1.value) + parseInt(40/100*Rbn1.value));
-            Rtn2.value = (parseInt(60/100*Ran2.value) + parseInt(40/100*Rbn2.value));
-            Rtn3.value = (parseInt(60/100*Ran3.value) + parseInt(40/100*Rbn3.value));
+            Rtn1.value = (parseFloat(60/100*Ran1.value) + parseFloat(40/100*Rbn1.value));
+            Rtn2.value = (parseFloat(60/100*Ran2.value) + parseFloat(40/100*Rbn2.value));
+            Rtn3.value = (parseFloat(60/100*Ran3.value) + parseFloat(40/100*Rbn3.value));
 
             Na1.value = Rtn1.value;
             Na2.value = Rtn2.value;
