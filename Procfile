@@ -1,2 +1,2 @@
-web gunicorn QSAR:app
+web gunicorn beritaAcara:app
 
