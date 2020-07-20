@@ -37,8 +37,14 @@ table, tr, th, td {
     align-items: center;
     vertical-align: middle;
 }
-#tengah span{
-    text-align: center;
-    align-items: center;
-    vertical-align: middle;
+.no-border {
+    border: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+#RVS {
+    min-height: 130px;
+    min-width: max-content;
+}
+.bg-spc{
+    background-color: #EEECE0;
 }

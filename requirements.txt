@@ -19,4 +19,5 @@ Werkzeug==0.16.0
 python-csv
 pandas
 numpy
+pdfkit
 statsmodels

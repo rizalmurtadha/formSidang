@@ -1,8 +1,10 @@
-from flask import Flask, redirect, url_for, render_template, request, send_from_directory
+from flask import Flask, redirect, url_for, render_template, request, send_from_directory, make_response
 import os
 import pandas as pd
 import numpy as np
 import csv
+import pdfkit
+from datetime import date 
 
 app = Flask(__name__) 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -11,10 +13,20 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/",methods=["GET", "POST"])
 def index():
+    today = date.today() 
+    today = "{:%d-%b-%Y}".format(today)
     if request.method=="POST":
 
         if (request.form['hitung']=="1"):
             # return request.form['DPb21']
+            NIM = request.form['NIM']
+            MHS = request.form['MHS']
+            JTA = request.form['JTA']
+            Pb1 = request.form['Pb1']
+            Pb2 = request.form['Pb2']
+            Pg1 = request.form['Pg1']
+            Pg2 = request.form['Pg2']
+
             DPb11 = request.form['DPb11']
             DPb12 = request.form['DPb12']
             DPb13 = request.form['DPb13']
@@ -29,18 +41,22 @@ def index():
             DPg22 = request.form['DPg22']
             DPg23 = request.form['DPg23']
 
-            LPb = []
-            LPg = []
-            LNP = []
-            LNA = []
-            LIA = ""
+            RVS = request.form['RVS']
+
+            # LPb = []
+            # LPg = []
+            # LNP = []
+            # LNA = []
+            # LIA = ""
             try:
                 LPb = hitungPembimbing(DPb11,DPb12,DPb13,DPb21,DPb22,DPb23)
                 LPg = hitungPenguji(DPg11,DPg12,DPg13,DPg21,DPg22,DPg23)
                 LNP = hitungNilaiTotal(LPb,LPg)
                 LNA = hitungNilaiAkhir(LNP)
-                LIA = indexing(LNA)
-                return render_template("index.html",
+                INA =round( (0.35*LNA[0]) + (0.3*LNA[1]) + (0.35*LNA[2]),2) 
+                LIA = indexing(INA)
+                cetak = 0
+                html = render_template("index.html",
                                     DPb11=DPb11, DPb12=DPb12, DPb13=DPb13,
                                     DPb21=DPb21, DPb22=DPb22, DPb23=DPb23,
                                     LPb1=LPb[0] , LPb2=LPb[1] , LPb3=LPb[2] ,
@@ -49,7 +65,20 @@ def index():
                                     LPg1=LPg[0] , LPg2=LPg[1] , LPg3=LPg[2] ,
                                     LNP1=LNP[0] , LNP2=LNP[1] , LNP3=LNP[2] ,
                                     LNA1=LNA[0] , LNA2=LNA[1] , LNA3=LNA[2] ,
-                                    LIA=LIA,  message="success" )
+                                    LIA=LIA, INA=INA, NIM=NIM,
+                                    MHS=MHS, JTA=JTA, Pb1=Pb1,
+                                    Pb2=Pb2, Pg1=Pg1, Pg2=Pg2,
+                                    RVS=RVS,  message="success" ,date=today)
+                cetak = request.form['cetak']
+                if (cetak=="1"):
+                    filename_pdf = "Nilai_"+MHS+".pdf"
+                    pdf = pdfkit.from_string(html, False)
+                    response = make_response(pdf)
+                    response.headers["Content-Type"] = "application/pdf"
+                    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+                    return response
+                else:
+                    return html
             except:
                 return render_template("index.html",
                             DPb11="", DPb12="", DPb13="",
@@ -60,7 +89,10 @@ def index():
                             LPg1="" , LPg2="" , LPg3="" ,
                             LNP1="" , LNP2="" , LNP3="" ,
                             LNA1="" , LNA2="" , LNA3="" ,
-                            LIA="", message="error")
+                            LIA="", INA="", NIM="",
+                            MHS="", JTA="", Pb1="",
+                            Pb2="", Pg1="", Pg2="",
+                            RVS="", message="error",date=today)
 
     return render_template("index.html",
                             DPb11="", DPb12="", DPb13="",
@@ -71,7 +103,10 @@ def index():
                             LPg1="" , LPg2="" , LPg3="" ,
                             LNP1="" , LNP2="" , LNP3="" ,
                             LNA1="" , LNA2="" , LNA3="" ,
-                            LIA="" , message="normal")
+                            LIA="" , INA="", NIM="",
+                            MHS="", JTA="", Pb1="",
+                            Pb2="", Pg1="", Pg2="",
+                            RVS="",  message="normal",date=today)
 
 ind_to_val = {"A":4, "AB":3.5, "B":3, "BC":2.5, "C":2, "D":1, "E":0}
 val_to_ind = {4:"A", 3.5:"AB", 3:"B", 2.5:"BC", 2:"C", 1:"D", 0:"E"}
@@ -145,8 +180,7 @@ def hitungNilaiAkhir(LNP):
     LNA=[LNA1,LNA2,LNA3]
     return LNA
 
-def indexing(LNA):
-    nilai_akhir = (0.35*LNA[0]) + (0.3*LNA[1]) + (0.35*LNA[2])
+def indexing(nilai_akhir):
     if nilai_akhir > 3.5: LIA = "A"
     elif nilai_akhir > 3.25: LIA = "AB"
     elif nilai_akhir > 2.75: LIA = "B"

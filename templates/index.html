@@ -24,15 +24,39 @@
                 </div>
             </div>
         </div>
-        <br><br><br>
+        <br><br>
         <div class="container shadow-sm">
             <h2 style="text-align: center;">Berita Acara Sidang</h2>
+            <p class="d-flex justify-content-end">{{date}}</p><br>
             <form action="{{ url_for('index') }}" method="POST" enctype=multipart/form-data >
+            <table class="table table-bordered">
+                <tbody>
+                    <tr class="d-flex">
+                        <th class="col-2">NIM</th>
+                        <td class="col-10">
+                            <input type="text" class="form-control" name="NIM" id="NIM" value="{{NIM}}">
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <th class="col-2">Nama Mahasiswa</th>
+                        <td class="col-10">
+                            <input type="text" class="form-control" name="MHS" id="MHS" value="{{MHS}}">
+                        </td>
+                    </tr>
+                    <tr class="d-flex">
+                        <th class="col-2 JTA" id="Judul">Judul TA</th>
+                        <td class="col-10">
+                            <textarea  class="form-control" rows="2" name="JTA" id="JTA" >{{JTA}}</textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <table class="table" id="table">
                 <thead>
                     <tr>
                         <th rowspan="2" >No.</th>
                         <th rowspan="2">Posisi</th>
+                        <th rowspan="2">Nama</th>
                         <th colspan="3">Nilai<br>
                             <small>[A, AB, B, BC, C, D, E]</small>
                         </th>
@@ -47,6 +71,13 @@
                     <tr>
                         <th>1</th>
                         <td>Pembimbing 1</td>
+                        <td>
+                            {% if(message=="success"): %}
+                            <input type="text" class="form-control no-border" name="Pb1" id="Pb1" style="text-align:center;" value="{{Pb1}}"  >
+                            {% else: %}
+                            <input type="text" class="form-control " name="Pb1" id="Pb1" style="text-align:center;" value="{{Pb1}}"  >
+                            {% endif %}
+                        </td>
                         <td>
                             <select class="custom-select" name="DPb11"id="DPb11" required>
                                 <option value="" selected></option>
@@ -88,6 +119,13 @@
                         <th>2</th>
                         <td>Pembimbing 2</td>
                         <td>
+                            {% if(message=="success"): %}
+                            <input type="text" class="form-control no-border" name="Pb2" id="Pb2" style="text-align:center;" value="{{Pb2}}"  >
+                            {% else: %}
+                            <input type="text" class="form-control " name="Pb2" id="Pb2" style="text-align:center;" value="{{Pb2}}"  >
+                            {% endif %}                            
+                        </td>
+                        <td>
                             <select class="custom-select" name="DPb21"id="DPb21" >
                                 <option value="" selected></option>
                                 <option value="A"  >A</option>
@@ -125,7 +163,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th id="separate" colspan="2">Rata-rata pembimbing (Ra)</th>
+                        <th id="separate" colspan="3">Rata-rata pembimbing (Ra)</th>
                         <td>
                             <label class="Label-Index" name="LPb1" id="LPb1"  size="3" >{{LPb1}}</label>
                         </td>
@@ -139,6 +177,13 @@
                     <tr>
                         <th>3</th>
                         <td>Penguji 1</td>
+                        <td>
+                            {% if(message=="success"): %}
+                            <input type="text" class="form-control no-border" name="Pg1" id="Pg1" style="text-align:center;" value="{{Pg1}}"  >
+                            {% else: %}
+                            <input type="text" class="form-control " name="Pg1" id="Pg1" style="text-align:center;" value="{{Pg1}}"  >
+                            {% endif %}
+                        </td>
                         <td>
                             <select class="custom-select" name="DPg11"id="DPg11" required>
                                 <option value="" selected></option>
@@ -180,6 +225,13 @@
                         <th>4</th>
                         <td>Penguji 2</td>
                         <td>
+                            {% if(message=="success"): %}
+                            <input type="text" class="form-control no-border" name="Pg2" id="Pg2" style="text-align:center;" value="{{Pg2}}"  >
+                            {% else: %}
+                            <input type="text" class="form-control " name="Pg2" id="Pg2" style="text-align:center;" value="{{Pg2}}"  >
+                            {% endif %}
+                        </td>
+                        <td>
                             <select class="custom-select" name="DPg21"id="DPg21" required>
                                 <option value="" selected></option>
                                 <option value="A"  >A</option>
@@ -217,7 +269,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th id="separate" colspan="2">Rata-rata penguji (Rb)</th>
+                        <th id="separate" colspan="3">Rata-rata penguji (Rb)</th>
                         <td>
                             <label class="Label-Index" name="LPg1" id="LPg1"  size="3" >{{LPg1}}</label>
                         </td>
@@ -229,7 +281,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th id="separate" colspan="2">Nilai hasil perhitungan (60%*Ra + 40%*Rb)</th>
+                        <th id="separate" colspan="3">Nilai hasil perhitungan (60%*Ra + 40%*Rb)</th>
                         <td>
                             <label class="Label-Index" name="LNP1" id="LNP1"  size="3" >{{LNP1}}</label>
                         </td>
@@ -241,7 +293,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th id="separate" colspan="2">Nilai akhir</th>
+                        <th id="separate" colspan="3">Nilai akhir</th>
                         <td>
                             <label class="Label-Index" name="LNA1" id="LNA1"  size="3" >{{LNA1}}</label>
                         </td>
@@ -252,12 +304,22 @@
                             <label class="Label-Index" name="LNA3" id="LNA3"  size="3" >{{LNA3}}</label>
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Catatan Revisi:
+                        </th>
+                        <td colspan="5">
+                            <textarea id="RVS" name="RVS" rows="5" cols="100">{{RVS}}</textarea>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
+            <br>
             <div class="row">
                 <div class="col-7">
-                    <h4>Indeks Tugas Akhir</h4>
-                    <h4>(CLO1 x 35%) + (CLO2 x 30%) + (CLO3 x 35%) = <label  id="LIA" name="LIA" size="3">{{LIA}}</label></h4>
+                    <h4>Nilai Tugas Akhir</h4>
+                    <h4>(CLO1 x 35%) + (CLO2 x 30%) + (CLO3 x 35%) = <label  id="LIA" name="LIA" size="3">{{INA}}</label></h4>
+                    <h5>Indeks Tugas Akhir = {{LIA}}</h5>
                 </div>
                 <div class="col-5 align-self-center d-flex justify-content-center">
                     <div class="row">
@@ -277,7 +339,17 @@
                     </div>
                 </div>
             </div>
-                
+            {% if(message=="success"): %}
+            <div class="d-flex justify-content-center">
+                <input type="hidden" name="hitung" value="1">
+                <button type="submit" class="" id="cetak" name="cetak" value="1">Cetak</button>
+            </div>
+            {% else: %}
+            <div class="d-flex justify-content-center">
+                <input type="hidden" class="" id="cetak" name="cetak" value=0>
+            </div>
+            {% endif %}
+
             <br><br><br>
             <small>Created by: Rizal and IKN</small>
             <br><br>
