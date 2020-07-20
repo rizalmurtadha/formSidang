@@ -304,14 +304,6 @@
                             <label class="Label-Index" name="LNA3" id="LNA3"  size="3" >{{LNA3}}</label>
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            Catatan Revisi:
-                        </th>
-                        <td colspan="5">
-                            <textarea id="RVS" name="RVS" rows="5" cols="100">{{RVS}}</textarea>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <br>
@@ -339,6 +331,16 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col-2">
+                    <b>Catatan Revisi:</b>
+                </div>
+                <div class="col">
+                    <textarea id="RVS" name="RVS" rows="5" cols="100">{{RVS}}</textarea>
+                </div>
+            </div>
+            <br>
             {% if(message=="success"): %}
             <div class="d-flex justify-content-center">
                 <input type="hidden" name="hitung" value="1">
