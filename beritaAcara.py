@@ -18,7 +18,7 @@ def index():
     if request.method=="POST":
 
         if (request.form['hitung']=="1"):
-            # return request.form['DPb21']
+            return request.form['DPb23']
             NIM = request.form['NIM']
             MHS = request.form['MHS']
             JTA = request.form['JTA']
