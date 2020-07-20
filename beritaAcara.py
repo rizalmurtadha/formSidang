@@ -69,7 +69,7 @@ def index():
                                     MHS=MHS, JTA=JTA, Pb1=Pb1,
                                     Pb2=Pb2, Pg1=Pg1, Pg2=Pg2,
                                     RVS=RVS,  message="success" ,date=today)
-                cetak = request.form['cetak']
+                # cetak = request.form['cetak']
                 if (cetak=="1"):
                     filename_pdf = "Nilai_"+MHS+".pdf"
                     pdf = pdfkit.from_string(html, False)
