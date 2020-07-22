@@ -15,6 +15,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 def index():
     today = date.today() 
     today = "{:%d-%b-%Y}".format(today)
+    cetak = "0"
     if request.method=="POST":
 
         if (request.form['hitung']=="1"):
@@ -40,6 +41,7 @@ def index():
             DPg21 = request.form['DPg21']
             DPg22 = request.form['DPg22']
             DPg23 = request.form['DPg23']
+            
 
             RVS = request.form['RVS']
 
@@ -49,13 +51,17 @@ def index():
             # LNA = []
             # LIA = ""
             try:
+                try:
+                    cetak = request.form['cetak']
+                except:
+                    cetak = "0"
+
                 LPb = hitungPembimbing(DPb11,DPb12,DPb13,DPb21,DPb22,DPb23)
                 LPg = hitungPenguji(DPg11,DPg12,DPg13,DPg21,DPg22,DPg23)
                 LNP = hitungNilaiTotal(LPb,LPg)
                 LNA = hitungNilaiAkhir(LNP)
                 INA =round( (0.35*LNA[0]) + (0.3*LNA[1]) + (0.35*LNA[2]),2) 
                 LIA = indexing(INA)
-                cetak = 0
                 html = render_template("index.html",
                                     DPb11=DPb11, DPb12=DPb12, DPb13=DPb13,
                                     DPb21=DPb21, DPb22=DPb22, DPb23=DPb23,
@@ -67,46 +73,24 @@ def index():
                                     LNA1=LNA[0] , LNA2=LNA[1] , LNA3=LNA[2] ,
                                     LIA=LIA, INA=INA, NIM=NIM,
                                     MHS=MHS, JTA=JTA, Pb1=Pb1,
-                                    Pb2=Pb2, Pg1=Pg1, Pg2=Pg2,
+                                    Pb2=Pb2, Pg1=Pg1, Pg2=Pg2, cetak=cetak,
                                     RVS=RVS,  message="success" ,date=today)
-                # cetak = request.form['cetak']
+                # return cetak
                 if (cetak=="1"):
                     filename_pdf = "Nilai_"+MHS+".pdf"
-                    pdf = pdfkit.from_string(html, False)
+                    css = ["static/css/bootstrap.min.css","static/style.css"]
+                    pdf = pdfkit.from_string(html, False,css=css)
                     response = make_response(pdf)
                     response.headers["Content-Type"] = "application/pdf"
-                    response.headers["Content-Disposition"] = "inline; filename=output.pdf"
+                    response.headers["Content-Disposition"] = "inline; filename=image.pdf"
+                    # return "0sx"
                     return response
                 else:
                     return html
             except:
-                return render_template("index.html",
-                            DPb11="", DPb12="", DPb13="",
-                            DPb21="", DPb22="", DPb23="",
-                            LPb1="" , LPb2="" , LPb3="" ,
-                            DPg11="", DPg12="", DPg13="",
-                            DPg21="", DPg22="", DPg23="",
-                            LPg1="" , LPg2="" , LPg3="" ,
-                            LNP1="" , LNP2="" , LNP3="" ,
-                            LNA1="" , LNA2="" , LNA3="" ,
-                            LIA="", INA="", NIM="",
-                            MHS="", JTA="", Pb1="",
-                            Pb2="", Pg1="", Pg2="",
-                            RVS="", message="error",date=today)
+                return render_template("index.html", cetak=cetak, message="error",date=today)
 
-    return render_template("index.html",
-                            DPb11="", DPb12="", DPb13="",
-                            DPb21="", DPb22="", DPb23="",
-                            LPb1="" , LPb2="" , LPb3="" ,
-                            DPg11="", DPg12="", DPg13="",
-                            DPg21="", DPg22="", DPg23="",
-                            LPg1="" , LPg2="" , LPg3="" ,
-                            LNP1="" , LNP2="" , LNP3="" ,
-                            LNA1="" , LNA2="" , LNA3="" ,
-                            LIA="" , INA="", NIM="",
-                            MHS="", JTA="", Pb1="",
-                            Pb2="", Pg1="", Pg2="",
-                            RVS="",  message="normal",date=today)
+    return render_template("index.html",  cetak=cetak, message="normal",date=today)
 
 ind_to_val = {"A":4, "AB":3.5, "B":3, "BC":2.5, "C":2, "D":1, "E":0}
 val_to_ind = {4:"A", 3.5:"AB", 3:"B", 2.5:"BC", 2:"C", 1:"D", 0:"E"}
