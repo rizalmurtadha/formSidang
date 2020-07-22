@@ -82,7 +82,7 @@ def index():
                     pdf = pdfkit.from_string(html, False,css=css)
                     response = make_response(pdf)
                     response.headers["Content-Type"] = "application/pdf"
-                    response.headers["Content-Disposition"] = "inline; filename=image.pdf"
+                    response.headers["Content-Disposition"] = "attachment; filename=image.pdf"
                     # return "0sx"
                     return response
                 else:
