@@ -79,6 +79,7 @@ def index():
                 if (cetak=="1"):
                     filename_pdf = "Nilai_"+MHS+".pdf"
                     css = ["static/css/bootstrap.min.css","static/style.css"]
+                    return "test"
                     pdf = pdfkit.from_string(html, False,css=css)
                     response = make_response(pdf)
                     response.headers["Content-Type"] = "application/pdf"
