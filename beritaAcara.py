@@ -88,6 +88,7 @@ def index():
                 else:
                     return html
             except:
+                cetak="0"
                 return render_template("index.html", cetak=cetak, message="error",date=today)
 
     return render_template("index.html",  cetak=cetak, message="normal",date=today)
