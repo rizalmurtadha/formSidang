@@ -50,48 +50,48 @@ def index():
             # LNP = []
             # LNA = []
             # LIA = ""
+            # try:
             try:
-                try:
-                    cetak = request.form['cetak']
-                except:
-                    cetak = "0"
-
-                LPb = hitungPembimbing(DPb11,DPb12,DPb13,DPb21,DPb22,DPb23)
-                LPg = hitungPenguji(DPg11,DPg12,DPg13,DPg21,DPg22,DPg23)
-                LNP = hitungNilaiTotal(LPb,LPg)
-                LNA = hitungNilaiAkhir(LNP)
-                INA =round( (0.35*LNA[0]) + (0.3*LNA[1]) + (0.35*LNA[2]),2) 
-                LIA = indexing(INA)
-                html = render_template("index.html",
-                                    DPb11=DPb11, DPb12=DPb12, DPb13=DPb13,
-                                    DPb21=DPb21, DPb22=DPb22, DPb23=DPb23,
-                                    LPb1=LPb[0] , LPb2=LPb[1] , LPb3=LPb[2] ,
-                                    DPg11=DPg11, DPg12=DPg12, DPg13=DPg13,
-                                    DPg21=DPg21, DPg22=DPg22, DPg23=DPg23,
-                                    LPg1=LPg[0] , LPg2=LPg[1] , LPg3=LPg[2] ,
-                                    LNP1=LNP[0] , LNP2=LNP[1] , LNP3=LNP[2] ,
-                                    LNA1=LNA[0] , LNA2=LNA[1] , LNA3=LNA[2] ,
-                                    LIA=LIA, INA=INA, NIM=NIM,
-                                    MHS=MHS, JTA=JTA, Pb1=Pb1,
-                                    Pb2=Pb2, Pg1=Pg1, Pg2=Pg2, cetak=cetak,
-                                    RVS=RVS,  message="success" ,date=today)
-                # return cetak
-                if (cetak=="1"):
-                    filename_pdf = "Nilai_"+MHS+".pdf"
-                    css = ["static/css/bootstrap.min.css","static/style.css"]
-                    
-                    pdf = pdfkit.from_string(html, False,css=css)
-                    return "test"
-                    response = make_response(pdf)
-                    response.headers["Content-Type"] = "application/pdf"
-                    response.headers["Content-Disposition"] = "attachment; filename=image.pdf"
-                    # return "0sx"
-                    return response
-                else:
-                    return html
+                cetak = request.form['cetak']
             except:
-                cetak="0"
-                return render_template("index.html", cetak=cetak, message="error",date=today)
+                cetak = "0"
+
+            LPb = hitungPembimbing(DPb11,DPb12,DPb13,DPb21,DPb22,DPb23)
+            LPg = hitungPenguji(DPg11,DPg12,DPg13,DPg21,DPg22,DPg23)
+            LNP = hitungNilaiTotal(LPb,LPg)
+            LNA = hitungNilaiAkhir(LNP)
+            INA =round( (0.35*LNA[0]) + (0.3*LNA[1]) + (0.35*LNA[2]),2) 
+            LIA = indexing(INA)
+            html = render_template("index.html",
+                                DPb11=DPb11, DPb12=DPb12, DPb13=DPb13,
+                                DPb21=DPb21, DPb22=DPb22, DPb23=DPb23,
+                                LPb1=LPb[0] , LPb2=LPb[1] , LPb3=LPb[2] ,
+                                DPg11=DPg11, DPg12=DPg12, DPg13=DPg13,
+                                DPg21=DPg21, DPg22=DPg22, DPg23=DPg23,
+                                LPg1=LPg[0] , LPg2=LPg[1] , LPg3=LPg[2] ,
+                                LNP1=LNP[0] , LNP2=LNP[1] , LNP3=LNP[2] ,
+                                LNA1=LNA[0] , LNA2=LNA[1] , LNA3=LNA[2] ,
+                                LIA=LIA, INA=INA, NIM=NIM,
+                                MHS=MHS, JTA=JTA, Pb1=Pb1,
+                                Pb2=Pb2, Pg1=Pg1, Pg2=Pg2, cetak=cetak,
+                                RVS=RVS,  message="success" ,date=today)
+            # return cetak
+            if (cetak=="1"):
+                filename_pdf = "Nilai_"+MHS+".pdf"
+                css = ["static/css/bootstrap.min.css","static/style.css"]
+                
+                pdf = pdfkit.from_string(html, False,css=css)
+                # return "test"
+                response = make_response(pdf)
+                response.headers["Content-Type"] = "application/pdf"
+                response.headers["Content-Disposition"] = "attachment; filename=image.pdf"
+                # return "0sx"
+                return response
+            else:
+                return html
+            # except:
+            #     cetak="0"
+            #     return render_template("index.html", cetak=cetak, message="error",date=today)
 
     return render_template("index.html",  cetak=cetak, message="normal",date=today)
 
