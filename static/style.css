@@ -1,3 +1,43 @@
+/* Header */
+.kop h4{
+    font-size: 16px;
+}
+/* .kop td{
+    font-size: 16px;
+} */
+#table-CLO{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+#Content-CLO td, #Content-CLO th{
+    border: 1px solid black;
+}
+#Content-CLO td{
+    text-align: left;
+}
+
+#table-kop td {
+    text-align:left; 
+    vertical-align : middle;
+}
+#table-mahasiswa th {
+    text-align:left; 
+    vertical-align : middle;
+}
+
+#table-mahasiswa input, #table-mahasiswa textarea{
+    background-color: white;
+    color: black;
+}
+
+
+.Label-Index{
+    background-color: white;
+    border-style: none;
+    color: black;
+    text-align:center; 
+}
+
 table, tr, th, td {
     text-align:center; 
     vertical-align : middle;
@@ -7,6 +47,14 @@ table, tr, th, td {
 #separate{
     text-align:left;
 }
+#Table-border {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+  
+#Content-border th, #Content-border td {
+    border: 1px solid black;
+}
 #table tr th{
     vertical-align : middle;
 }
@@ -15,6 +63,7 @@ table, tr, th, td {
     border-style: none;
     color: black;
 }
+
 #logo{
     align-items: center;
     text-align: center;
@@ -24,12 +73,7 @@ table, tr, th, td {
     align-items: center;
     vertical-align: middle;
 }
-.Label-Index{
-    background-color: white;
-    border-style: none;
-    color: black;
-    text-align:center; 
-}
+
 #hitung{
     /* padding: */
     margin: 0px 5px;
@@ -47,4 +91,18 @@ table, tr, th, td {
 }
 .bg-spc{
     background-color: #EEECE0;
+}
+.deskripsi {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* home page */
+
+#header{
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    border-radius: 1px;
+    border: solid;
 }

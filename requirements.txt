@@ -16,8 +16,10 @@ sqlparse==0.3.0
 termcolor==1.1.0
 urllib3==1.25.5
 Werkzeug==0.16.0
+pdfkit
 python-csv
 pandas
 numpy
-pdfkit
+python-pdf
 statsmodels
+joblib
